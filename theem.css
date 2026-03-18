@@ -1,0 +1,117 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+html, body{
+    height: -100%;
+    width: 100%;
+    background-color: var(--color-primary);
+    color: var(--text-primary);
+}
+
+:root {
+  /* ========== COLORS ========== */
+  --color-primary: #2f855a;
+  --color-secondary: #68d391;
+  --color-accent: #f6ad55;
+  --color-darkAccent: #523007;
+
+
+
+  --color-primary-ii: #3b82f6;
+  --color-secondary-ii: #93c5fd;
+  --color-accent-ii: #facc15;
+  --color-darkAccent-ii: #713f12;
+
+  --bg-color: #0f172a;
+  --bg-text-primary: #f9fafb;
+  --bg-text-secondary: #cbd5f5;
+
+  --primary-bg: #3b82f6;
+  --primary-text: #ffffff;
+
+  --btn-secondary-bg: #1e293b;
+  --btn-secondary-text: #f9fafb;
+
+  --btn-accent-bg: #facc15;
+  --btn-accent-text: #111827;
+
+
+
+  /* Text Colors */
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+  --text-light: #ffffff;
+  --text-muted: #6b240f;
+
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #4d5052;
+  --bg-dark: #1a202c;
+  --bg-card: #edf2f7;
+  --bg-secondary-color: #fdfdfc;
+
+  /* Button Colors */
+  --btn-primary: #2f855a;
+  --btn-primary-hover: #276749;
+  --btn-secondary: #f6ad55;
+  --btn-secondary-hover: #dd8a2d;
+
+  /* ========== FONT SIZE ========== */
+  --font-xs: 10px;
+  --font-sm: 0.875rem;
+  --font-md: 1rem;
+  --font-lg: 1.25rem;
+  --font-xl: 1.5rem;
+  --font-2xl: 2rem;
+  --font-3xl: 2.5rem;
+
+  /* ========== SPACING ========== */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Padding */
+  --padding-xs: 4px;
+  --padding-sm: 8px;
+  --padding-md: 16px;
+  --padding-lg: 24px;
+
+  /* Margin */
+  --margin-xs: 4px;
+  --margin-sm: 8px;
+  --margin-md: 16px;
+  --margin-lg: 24px;
+
+  /* Gap */
+  --gap-xs: 4px;
+  --gap-sm: 8px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+
+  /* ========== BORDER RADIUS ========== */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-round: 50%;
+
+  /* ========== SHADOW ========== */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.15);
+
+  /* ========== BORDER ========== */
+  --border-light: 1px solid #e2e8f0;
+  --border-dark: 1px solid #4a5568;
+
+  /* ========== TRANSITION ========== */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
