@@ -26,8 +26,12 @@ const startBtn = document.querySelector("#start");
 const modalHome = document.querySelector(".modalHome");
 const showModalHome = document.querySelector(".showModalHome");
 
-const gameDirection = document.querySelector(".direction")
-let keyPress = false
+const startingModal = document.querySelector(".startingModal")
+const startingTimer = document.querySelector(".startingTimer")
+
+
+
+
 
 let food = {
   x: Math.floor(Math.random() * rows),
@@ -89,6 +93,7 @@ function render() {
   if (snake.some((snake) => snake.x === hade.x && snake.y === hade.y)) {
     showModal.style.display = "flex";
     notice.style.display = "flex";
+    
 
     clearInterval(snakeMoveing);
     return;
@@ -158,17 +163,38 @@ function playGame() {
 
 // playGame();
 
+function showTime(){
+  let StartingTimer 
+  let timeCount = 4
+
+  let count = document.querySelector(".count")
+
+      StartingTimer = setInterval(() => {
+      startingModal.style.display = "flex"
+      startingTimer.style.display = "flex"
+      modalHome.style.display = "none";
+      console.log("hello")
+      timeCount--
+      
+      count.innerText = timeCount
+      if(timeCount < 0){
+        startingModal.style.display = "none"
+      startingTimer.style.display = "none"
+      clearInterval(StartingTimer)
+        playGame()
+      }
+
+    }, 1000);
+}
+
+
 function welcomeNotice() {
   showModalHome.style.display = "flex";
   modalHome.style.display = "flex";
 
   startBtn.addEventListener("click", () => {
-    
-    showModal.style.display = "none";
     notice.style.display = "none";
-    // playGame()
-    // if()
-
+    showTime()
   });
 }
 welcomeNotice();
@@ -176,6 +202,7 @@ welcomeNotice();
 function restartGame() {
   reStartBtn.addEventListener("click", () => {
     showModal.style.display = "none";
+    notice.style.display = "none"
     direction = "";
     snake.forEach((segment) => {
       blocks[`${segment.x}-${segment.y}`].classList.remove("snake");
@@ -188,7 +215,9 @@ function restartGame() {
       });
     });
 
-    playGame();
+    showTime()
+    direction = "right"
+
   });
 }
 restartGame();
