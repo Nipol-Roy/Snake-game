@@ -8,16 +8,26 @@ const cols = Math.floor(board.clientWidth / boxwidth);
 const rows = Math.floor(board.clientHeight / boxHeight);
 
 let blocks = [];
-let direction = null;
+let direction = "right";
+
 let snakeMoveing;
 let score = 0;
 let highScore = 0;
+
 let storedHighScore = JSON.parse(localStorage.getItem("highScore")) || 0;
 let highScoreSelector = document.querySelector(".highScore");
 const showModal = document.querySelector(".showModal");
 const reStartBtn = document.querySelector("#reStart");
 let scoreCounter = document.querySelector(".counter");
-let finalScore = document.querySelector(".finalScore")
+let finalScore = document.querySelector(".finalScore");
+const notice = document.querySelector(".notice");
+
+const startBtn = document.querySelector("#start");
+const modalHome = document.querySelector(".modalHome");
+const showModalHome = document.querySelector(".showModalHome");
+
+const gameDirection = document.querySelector(".direction")
+let keyPress = false
 
 let food = {
   x: Math.floor(Math.random() * rows),
@@ -43,6 +53,7 @@ function render() {
     blocks[`${segment.x}-${segment.y}`].classList.add("snake");
   });
   blocks[`${food.x}-${food.y}`].classList.add("food");
+
   if (!direction) {
     return;
   }
@@ -63,9 +74,10 @@ function render() {
   // // console.log(snake[0])
 
   if (hade.x < 0 || hade.x >= rows || hade.y >= cols || hade.y < 0) {
-    
     showModal.style.display = "flex";
-    
+    notice.style.display = "flex";
+    modalHome.style.display = "none";
+
     let finalScore = document.querySelector(".finalScore");
     finalScore.innerText = score;
     clearInterval(snakeMoveing);
@@ -76,6 +88,8 @@ function render() {
 
   if (snake.some((snake) => snake.x === hade.x && snake.y === hade.y)) {
     showModal.style.display = "flex";
+    notice.style.display = "flex";
+
     clearInterval(snakeMoveing);
     return;
   }
@@ -105,10 +119,10 @@ function render() {
     blocks[`${food.x}-${food.y}`].classList.add("food");
     snake.unshift(hade);
 
-    score = score + 1;
+    score = score + 10;
 
     scoreCounter.innerText = score;
-    finalScore.innerText = score
+    finalScore.innerText = score;
 
     if (score > storedHighScore) {
       storedHighScore = score;
@@ -142,21 +156,39 @@ function playGame() {
   }, 300);
 }
 
-playGame();
+// playGame();
 
-reStartBtn.addEventListener("click", () => {
-  showModal.style.display = "none";
-  direction = "";
-  snake.forEach((segment) => {
-    blocks[`${segment.x}-${segment.y}`].classList.remove("snake");
+function welcomeNotice() {
+  showModalHome.style.display = "flex";
+  modalHome.style.display = "flex";
 
-    snake = [{ x: 3, y: 5 }];
-    scoreCounter.innerText = 0;
+  startBtn.addEventListener("click", () => {
+    
+    showModal.style.display = "none";
+    notice.style.display = "none";
+    // playGame()
+    // if()
 
-    snake.forEach((segment) => {
-      blocks[`${segment.x}-${segment.y}`].classList.add("snake");
-    });
   });
+}
+welcomeNotice();
 
-  playGame();
-});
+function restartGame() {
+  reStartBtn.addEventListener("click", () => {
+    showModal.style.display = "none";
+    direction = "";
+    snake.forEach((segment) => {
+      blocks[`${segment.x}-${segment.y}`].classList.remove("snake");
+
+      snake = [{ x: 3, y: 5 }];
+      scoreCounter.innerText = 0;
+
+      snake.forEach((segment) => {
+        blocks[`${segment.x}-${segment.y}`].classList.add("snake");
+      });
+    });
+
+    playGame();
+  });
+}
+restartGame();

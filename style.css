@@ -1,30 +1,30 @@
 main {
-   
+
     height: 100vh;
     width: 100%;
     padding: 10px;
-   
+
 }
 
 main section {
-    
+
     padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     justify-content: center;
     align-items: center;
-     height: 100%;
+    height: 100%;
     width: 100%;
 }
 
 main section .infos {
-     border-radius: 10px;
-     padding: 10px 20px ;
+    border-radius: 10px;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-image: linear-gradient(to right ,var(--color-darkAccent), var(--btn-secondary-hover));
+    background-image: linear-gradient(to right, var(--color-darkAccent), var(--btn-secondary-hover));
     color: var(--text-light);
     width: 100%;
 }
@@ -48,39 +48,41 @@ main section .infos .timer {
 
 }
 
-main section .board{
+main section .board {
     height: 90%;
     width: 90%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20px,1fr));
-    grid-template-rows: repeat(auto-fill, minmax(20px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(20px, 1fr));
     /* border-radius: 10px; */
     background-color: var(--color-secondary);
     /* background-color: rgba(230, 230, 230, 0.973); */
 
 
 
- }
+}
 
- /* main section .board .box{
+/* main section .board .box{
     border: 1px solid rgba(151, 149, 149, 0.281); 
 
 }  */
 
-.food{
+.food {
     background-color: var(--color-accent);
     border-radius: 30%;
-    
+
 }
-.snake{
+
+.snake {
     background-color: var(--color-darkAccent);
     border-radius: 30%;
 }
-.snakeHade{
+
+.snakeHade {
     background-color: black;
 }
 
-.modal{
+.modal {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -95,10 +97,11 @@ main section .board{
     display: none;
 
 }
-.modal .notice{
+
+.modal .notice {
     /* border: 1px solid black; */
     padding: 10px;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -108,14 +111,46 @@ main section .board{
     border-radius: 10px;
     width: 300px;
     height: 200px;
-    
+
 
 }
 
-.modal .notice h2{
+.modal .modalHome {
+    /* border: 1px solid black; */
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--btn-primary);
+    color: var(--primary-text);
+    border-radius: 10px;
+    width: 300px;
+    height: 200px;
+
+
+}
+
+.direction {
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--btn-primary);
+    color: var(--primary-text);
+    border-radius: 10px;
+    width: 300px;
+    height: 200px;
+}
+
+.modal .notice h2 {
     font-size: 22px;
 }
-.modal .notice button{
+
+.modal .notice button {
     padding: 10px 30px;
     border: none;
     outline: none;
@@ -126,15 +161,28 @@ main section .board{
     cursor: pointer;
 
 }
-.modal .notice button:hover{
+
+.modal .modalHome button {
+    padding: 10px 30px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    background-color: var(--btn-secondary);
+    color: var(--primary-text);
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.modal .notice button:hover {
     background-color: var(--btn-secondary-hover);
     transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     scale: 1.05;
 }
 
-.modal .notice h3{
+.modal .notice h3 {
     font-size: 35px;
     font-weight: 900;
     color: var(--text-muted);
-    
+
 }
