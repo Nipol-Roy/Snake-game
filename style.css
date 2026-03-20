@@ -177,6 +177,9 @@ main section .board {
     cursor: pointer;
 
 }
+.modalHome p {
+    font-size: 14px;
+}
 
 .modal .notice button:hover {
     background-color: var(--btn-secondary-hover);
