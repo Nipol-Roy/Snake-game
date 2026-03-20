@@ -177,7 +177,7 @@ main section .board {
     cursor: pointer;
 
 }
-.modalHome p {
+.modalHome .p {
     font-size: 14px;
 }
 
