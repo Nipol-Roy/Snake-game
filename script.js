@@ -1,6 +1,5 @@
 const board = document.querySelector(".board");
 
-
 const boxHeight = 20;
 const boxwidth = 20;
 
@@ -38,8 +37,6 @@ const reasonSelector = document.querySelector(".reason");
 let timeLeft = `02:00`;
 let speed = 400;
 
-
-
 let countingTimeIntervel = null;
 let timerStatus = false;
 let isPlayingGame = false;
@@ -63,7 +60,6 @@ for (let row = 0; row < rows; row++) {
     blocks[`${row}-${col}`] = box;
   }
 }
-
 
 function render() {
   snake.forEach((segment) => {
@@ -137,13 +133,10 @@ function render() {
 
   if (food.x == snake[0].x && food.y == snake[0].y) {
     blocks[`${food.x}-${food.y}`].classList.remove("food");
-    do {
-      food = {
-        x: Math.floor(Math.random() * rows),
-        y: Math.floor(Math.random() * cols),
-      };
-    } while (snake.some((sn) => sn.x === food.x && sn.y === food.y));
-
+    food = {
+      x: Math.floor(Math.random() * rows),
+      y: Math.floor(Math.random() * cols),
+    };
     blocks[`${food.x}-${food.y}`].classList.add("food");
     snake.unshift(hade);
 
@@ -176,12 +169,11 @@ function render() {
       highScoreSelector.innerText = storedHighScore;
     }
     clearInterval(snakeMoveing);
+
     playGame();
   }
 }
 highScoreSelector.innerText = storedHighScore;
-
-
 
 addEventListener("keydown", (event) => {
   if (event.key == "ArrowDown" && direction !== "up") {
@@ -195,20 +187,15 @@ addEventListener("keydown", (event) => {
   }
 });
 
-
-
-
-
-
 function playGame() {
-  if (isPlayingGame) return;
+  
 
   snakeMoveing = setInterval(() => {
     render();
   }, speed);
 
   gameIsPlaying = true;
-  isPlayingGame = true
+  isPlayingGame = true;
 }
 
 function showTime() {
@@ -237,32 +224,28 @@ function showTime() {
 }
 
 function welcomeNotice() {
-  showModalHome.style.display = "flex"; // off this game for some time
+  showModalHome.style.display = "flex";
   modalHome.style.display = "flex";
 
   startBtn.addEventListener("click", () => {
     notice.style.display = "none";
     showTime();
     speed = 400;
-    
   });
 }
 welcomeNotice();
 
 reStartBtn.addEventListener("click", () => {
   restartGame();
-  
-  
 });
 
 play.style.display = "none";
 
 timeCounter.innerText = "00:00s";
 
-
-const onPlay = "#5de993"
-const onPause = "#860d17"
-pause.style.backgroundColor = onPause
+const onPlay = "#5de993";
+const onPause = "#860d17";
+pause.style.backgroundColor = onPause;
 
 pause.addEventListener("click", () => {
   timerStatus = true;
@@ -270,7 +253,6 @@ pause.addEventListener("click", () => {
   play.style.display = "flex";
   play.style.backgroundColor = onPlay;
 
-  
   timeCounter.innerText = timeLeft + "s";
 
   if (isPlayingGame) {
@@ -288,8 +270,8 @@ play.addEventListener("click", () => {
   timerStatus = false;
   play.style.display = "none";
   pause.style.display = "flex";
-  pause.style.backgroundColor = onPause
-  
+  pause.style.backgroundColor = onPause;
+
   clearInterval(countingTimeIntervel);
 
   if (isPlayingGame === true) {
@@ -358,7 +340,6 @@ function hitBalence() {
     reasonSelector.style.color = "#123698";
   }
 }
-
 
 function restartGame() {
   showModal.style.display = "none";
