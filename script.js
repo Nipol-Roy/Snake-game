@@ -28,7 +28,21 @@ const showModalHome = document.querySelector(".showModalHome");
 
 const startingModal = document.querySelector(".startingModal");
 const startingTimer = document.querySelector(".startingTimer");
-let isPlayingGame = false;
+
+const pause = document.querySelector(".pause");
+const play = document.querySelector(".play");
+const navTimer = document.querySelector(".nav-timer");
+const timeCounter = document.querySelector(".timeCounter");
+
+let timeLeft = `02:00`;
+let speed = 300;
+
+const OnPlayBg = "#68d391";
+const OnPauseBg = "#6b240f";
+
+let countingTimeIntervel = null;
+let timerStatus = false;
+let isPlayingGame = false
 
 let food = {
   x: Math.floor(Math.random() * rows),
@@ -48,61 +62,6 @@ for (let row = 0; row < rows; row++) {
   }
 }
 // console.log(blocks);
-
-
-
-const pause = document.querySelector(".pause");
-const play = document.querySelector(".play");
-const navTimer = document.querySelector(".nav-timer");
-const timeCounter = document.querySelector(".timeCounter");
-
-let timeLeft = `02:00`;
-
-const OnPlayBg = "#68d391";
-const OnPauseBg = "#6b240f";
-
-let countingTimeIntervel = null;
-
-play.style.display = "none";
-
-timeCounter.innerText = "00:00s";
-
-
-function startTimeCounter() {
-  let [min, sec] = timeLeft.split(":").map(Number);
-
-  countingTimeIntervel = setInterval(() => {
-    if (sec == 0) {
-      if (min == 0) {
-        clearInterval(countingTimeIntervel);
-        countingTimeIntervel = null;
-        restartGame();
-
-        return;
-      } else {
-        min--;
-        sec = 59;
-      }
-    } else {
-      sec--;
-    }
-
-    let minFormat = min < 10 ? "0" + min : min;
-    let secFormat = sec < 10 ? "0" + sec : sec;
-
-    timeCounter.innerText = `${minFormat}:${secFormat}s`;
-
-    console.log(min, sec);
-  }, 1000);
-}
-
-
-
-
-
-
-
-
 
 function render() {
   snake.forEach((segment) => {
@@ -133,10 +92,13 @@ function render() {
     showModal.style.display = "flex";
     notice.style.display = "flex";
     modalHome.style.display = "none";
+    
 
     let finalScore = document.querySelector(".finalScore");
     finalScore.innerText = score;
     clearInterval(snakeMoveing);
+    clearInterval(countingTimeIntervel);
+    isPlayingGame = false
     return;
   }
   //   console.log(hade);
@@ -145,8 +107,10 @@ function render() {
   if (snake.some((snake) => snake.x === hade.x && snake.y === hade.y)) {
     showModal.style.display = "flex";
     notice.style.display = "flex";
-
+   
     clearInterval(snakeMoveing);
+    clearInterval(countingTimeIntervel);
+     isPlayingGame = false
     return;
   }
 
@@ -175,7 +139,19 @@ function render() {
     blocks[`${food.x}-${food.y}`].classList.add("food");
     snake.unshift(hade);
 
-    score = score + 10;
+    if (timerStatus === true) {
+      score = score + 13;
+    } else {
+      score = score + 8;
+    }
+
+    if (timerStatus === true) {
+      speed = Math.max(50, speed - 10);
+    } else {
+      speed = Math.max(50, speed - 5);
+    }
+   
+    console.log(speed);
 
     scoreCounter.innerText = score;
     finalScore.innerText = score;
@@ -187,6 +163,8 @@ function render() {
 
       highScoreSelector.innerText = storedHighScore;
     }
+
+    playGame()
   }
 }
 highScoreSelector.innerText = storedHighScore;
@@ -207,19 +185,19 @@ addEventListener("keydown", (event) => {
 // render();
 
 function playGame() {
+  if(isPlayingGame) return;
+
   snakeMoveing = setInterval(() => {
     render();
-    isPlayingGame = true;
-  }, 300);
+  }, speed);
+
+  isPlayingGame = true
 }
 
-// playGame();
-
-let timeCount = 4;
 
 function showTime() {
   let StartingTimer;
-  
+  let timeCount = 4;
 
   let count = document.querySelector(".count");
 
@@ -236,6 +214,9 @@ function showTime() {
       startingTimer.style.display = "none";
       clearInterval(StartingTimer);
       playGame();
+      if (timerStatus === true) {
+        startTimeCounter();
+      }
     }
   }, 1000);
 }
@@ -252,48 +233,80 @@ function welcomeNotice() {
 welcomeNotice();
 
 function restartGame() {
-  reStartBtn.addEventListener("click", () => {
-    showModal.style.display = "none";
-    notice.style.display = "none";
-    direction = "";
+  showModal.style.display = "none";
+  notice.style.display = "none";
+  direction = "";
+  snake.forEach((segment) => {
+    blocks[`${segment.x}-${segment.y}`].classList.remove("snake");
+
+    snake = [{ x: 3, y: 5 }];
+    scoreCounter.innerText = 0;
+
     snake.forEach((segment) => {
-      blocks[`${segment.x}-${segment.y}`].classList.remove("snake");
-
-      snake = [{ x: 3, y: 5 }];
-      scoreCounter.innerText = 0;
-
-      snake.forEach((segment) => {
-        blocks[`${segment.x}-${segment.y}`].classList.add("snake");
-      });
+      blocks[`${segment.x}-${segment.y}`].classList.add("snake");
     });
-
-    showTime();
-    direction = "right";
   });
-}
-restartGame();
 
+  showTime();
+  direction = "right";
+  speed = 300
+
+  showTime.onloded = () => {
+    if (timerStatus === true) {
+      startTimeCounter();
+    }
+  };
+}
+reStartBtn.addEventListener("click", () => {
+  restartGame();
+});
+
+play.style.display = "none";
+
+timeCounter.innerText = "00:00s";
+navTimer.style.backgroundColor = OnPauseBg;
 
 pause.addEventListener("click", () => {
+  timerStatus = true;
   pause.style.display = "none";
   play.style.display = "flex";
   navTimer.style.backgroundColor = OnPlayBg;
   timeCounter.innerText = timeLeft + "s";
-
-  if (isPlayingGame) {
-    showModal.style.display = "flex";
-    notice.style.display = "flex";
-
-    clearInterval(snakeMoveing);
-
-    restartGame();
-    isPlayingGame = false;
-   if(timeCount < 0 ){
-    startTimeCounter()
-   }
-  }
-
   console.log("hello world");
 });
 
+play.addEventListener("click", () => {
+  timerStatus = false;
+  play.style.display = "none";
+  pause.style.display = "flex";
+  navTimer.style.backgroundColor = OnPauseBg;
+  clearInterval(countingTimeIntervel);
+});
 
+function startTimeCounter() {
+  let [min, sec] = timeLeft.split(":").map(Number);
+
+  countingTimeIntervel = setInterval(() => {
+    if (sec == 0) {
+      if (min == 0) {
+        clearInterval(snakeMoveing);
+        clearInterval(countingTimeIntervel);
+        countingTimeIntervel = null;
+        showModal.style.display = "flex";
+        notice.style.display = "flex";
+
+        return;
+      } else {
+        min--;
+        sec = 59;
+      }
+    } else {
+      sec--;
+    }
+    let formateMin = min < 10 ? "0" + min : min;
+    let formateSec = sec < 10 ? "0" + sec : sec;
+
+    timeCounter.innerText = `${formateMin}:${formateSec}s`;
+    console.log(min, sec);
+  }, 1000);
+}
