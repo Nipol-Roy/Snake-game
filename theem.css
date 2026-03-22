@@ -3,12 +3,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
+    font-family: var(--font-alt);
+  }
 html, body{
     height: -100%;
     width: 100%;
-    background-color: var(--color-primary);
+    background-color: var(--bg-main);
     color: var(--text-primary);
 }
 
@@ -25,6 +25,9 @@ html, body{
   --color-secondary-ii: #011d3d6b;
   --color-accent-ii: #facc15;
   --color-darkAccent-ii: #713f12;
+  --color-orange:#F7960B;
+  --color-red: #860d17;
+  --color-blue: #123698;
 
   --bg-color: #010f3098;
   --bg-text-primary: #f9fafb;
@@ -40,9 +43,37 @@ html, body{
   --btn-accent-text: #111827;
 
 
+/* start */
+
+  --bg-main: #081c15;
+  --bg-board: #95d5b2;
+
+  --snake: #1b4332;
+  --food: #ff595e;
+
+  --score-bar: #1b4332;
+
+  --text-primary: #ecfdf5;
+  --text-secondary: #b7e4c7;
+
+  --btn-primary: #ffca3a;
+  --btn-hover: #fcbf49;
+
+  --toggle-on: #52b788;
+  --toggle-off: #d00000;
+
+  --card-bg: #2d6a4f;
+  --card-text: #ecfdf5;
+  --card-btn: #ffca3a;
+
+  --font-primary: 'Press Start 2P', cursive;
+  --font-alt: 'Orbitron', sans-serif;
+
+  /* end */
+
 
   /* Text Colors */
-  --text-primary: #1a202c;
+  --text-primary-1: #1a202c;
   --text-secondary: #4a5568;
   --text-light: #ffffff;
   --text-muted: #6b240f;
@@ -93,11 +124,13 @@ html, body{
   --gap-xs: 4px;
   --gap-sm: 8px;
   --gap-md: 16px;
-  --gap-lg: 24px;
+  --gap-lg:20px;
+  --gap-xl: 24px;
 
   /* ========== BORDER RADIUS ========== */
-  --radius-sm: 4px;
-  --radius-md: 8px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-round: 50%;

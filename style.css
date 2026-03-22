@@ -2,16 +2,16 @@ main {
 
     height: 100vh;
     width: 100%;
-    padding: 10px;
+    padding: var(--padding-sm);
 
 }
 
 main section {
 
-    padding: 10px;
+    padding: var(--padding-sm);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: var(--gap-lg) ;
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -19,40 +19,102 @@ main section {
 }
 
 main section .infos {
-    border-radius: 10px;
-    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    padding: var(--padding-xs) var(--padding-sm);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-image: linear-gradient(to right, var(--color-darkAccent), var(--btn-secondary-hover));
-    color: var(--text-light);
+    background-color: var(--score-bar);
+    color: var(--text-primary);
     width: 100%;
+    
+    box-shadow: inset 0 0 5px rgb(32, 0, 0);
+    border: 1px solid rgba(40, 226, 186, 0.322);
 }
 
 main section .infos .high-score {
     font-weight: bold;
-    font-size: 15px;
+    font-size: var(--font-sm);
 
 }
 
 main section .infos .score {
     font-weight: bold;
-    font-size: 15px;
+    font-size: var(--font-sm);
 
 }
 
 main section .infos .nav-timer {
     font-weight: bold;
-    font-size: 15px;
+    font-size: var(--font-sm);
     display: flex;
-    gap: 10px;
-    /* border: 1px solid black; */
-    border-radius: 5px;
-    padding: 5px;
-    /* background-color: var(--text-muted); */
+    gap: var(--gap-sm);
+    border-radius: var(--radius-xs);
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+.timerBox {
+    background-color: var(--color-secondary-ii);
+    height: 100%;
+    width: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 
 }
+
+.timer-control {
+    border-radius: var(--radius-xs);
+    /* border: 1px solid black; */
+    height: 100%;
+    width: 100%;
+
+
+
+}
+
+.timer-box {
+    padding-left: var(--padding-xs);
+}
+
+.timeCounter {
+    padding-left: var(--padding-xs);
+}
+
+
+.play {
+    font-size: var(--font-sm);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+
+
+}
+
+.pause {
+    font-size: var(--font-sm);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    
+
+
+}
+
 
 main section .board {
     height: 90%;
@@ -60,33 +122,30 @@ main section .board {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(20px, 1fr));
-    /* border-radius: 10px; */
-    background-color: var(--color-secondary);
-    /* background-color: rgba(230, 230, 230, 0.973); */
+    border-radius: var(--radius-xs);
+    background-color: var(--bg-board);
     position: relative;
+    box-shadow: inset 0 0 15px rgb(32, 0, 0);
+    border: 2px solid rgba(40, 226, 186, 0.322);
 
 }
 
-/* main section .board .box{
-    border: 1px solid rgba(151, 149, 149, 0.281); 
-
-}  */
 
 .food {
-    background-color: var(--color-darkAccent);
-    border-radius: 50%;
+    background-color: var(--food);
+    border-radius: var(--radius-round);
 
 }
 
 .snake {
 
-    background-color: var(--color-accent);
+    background-color: var(--snake);
     border-radius: 20%;
 }
 
-.snakeHade {
+/* .snakeHade {
     background-color: black;
-}
+} */
 
 .modal {
     width: 100%;
@@ -106,87 +165,112 @@ main section .board {
 
 .modal .notice {
     /* border: 1px solid black; */
-    padding: 10px;
+    padding: var(--padding-sm);
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    background-color: var(--btn-primary);
-    color: var(--primary-text);
-    border-radius: 10px;
+    gap: var(--gap-sm);
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    border-radius: var(--radius-md);
     width: 300px;
     height: 200px;
+    box-shadow: inset 0 0 5px rgb(32, 0, 0);
+    border: 2px solid var(--card-bg);
+
 
 
 }
 
 .modal .modalHome {
     /* border: 1px solid black; */
-    padding: 10px;
+    padding: var(--padding-sm);
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    background-color: var(--btn-primary);
-    color: var(--primary-text);
-    border-radius: 10px;
+    gap: var(--gap-md);
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    border-radius: var(--radius-md);
     width: 300px;
     height: 200px;
+    box-shadow: inset 0 0 5px rgb(32, 0, 0);
+    border: 2px solid var(--card-bg);
 
 
 }
 
 .startingTimer {
-    padding: 10px;
+    padding: var(--padding-sm);
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    background-color: var(--btn-primary);
-    color: var(--primary-text);
-    border-radius: 10px;
+    gap: var(--gap-sm);
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    border-radius: var(--radius-md);
     width: 300px;
     height: 200px;
+    box-shadow: inset 0 0 5px rgb(32, 0, 0);
+    border: 2px solid var(--card-bg);
 }
 
 .startingTimer p {
-    font-size: 40px;
-
+    font-size: 30px;
 }
 
 .modal .notice h2 {
-    font-size: 22px;
+    font-size: 35px;
+    color: var(--text-muted);
+    font-weight: 900;
+}
+
+.reason {
+    font-size: 17px;
+    font-weight: 600;
+    display: none;
+}
+
+
+.modal .notice h3 {
+    font-size: 17px;
+    font-weight: 600;
+    
+
 }
 
 .modal .notice button {
-    padding: 10px 30px;
+    padding: var(--padding-sm) var(--padding-md);
     border: none;
     outline: none;
-    font-size: 18px;
-    background-color: var(--btn-secondary);
-    color: var(--primary-text);
-    border-radius: 10px;
+    font-size: var(--font-md);
+    background-color: var(--card-btn);
+    color: var(--card-text);
+    border-radius: var(--radius-sm);
     cursor: pointer;
 
 }
 
 .modal .modalHome button {
-    padding: 10px 30px;
+    padding: var(--padding-sm) var(--padding-lg);
     border: none;
     outline: none;
-    font-size: 18px;
+    font-size: var(--font-md);
     background-color: var(--btn-secondary);
     color: var(--primary-text);
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
 
 }
+.modalHome h3{
+    font-size: var(--font-xl);
+}
 
 .modalHome .p {
-    font-size: 14px;
+    font-size: var(--font-sm);
 }
 
 .modal .notice button:hover {
@@ -195,32 +279,8 @@ main section .board {
     scale: 1.05;
 }
 
-.modal .notice h3 {
-    font-size: 35px;
-    font-weight: 900;
-    color: var(--text-muted);
 
-}
 
-.timer-control {
-    display: flex;
-    /* border: 1px solid black ; */
-    justify-content: center;
-    align-items: center;
-    padding: 0px 5px;
-    border-radius: 5px;
-    background-color: var(--color-secondary-ii);
-
-}
-
-.play {
-    font-size: 15px;
-    cursor: pointer;
-
-}
-
-.pause {
-    font-size: 15px;
-    cursor: pointer;
-
+.scoreStatus {
+    font-size: 10px;
 }

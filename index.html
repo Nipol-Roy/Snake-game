@@ -9,6 +9,7 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="theem.css" />
     <link rel="stylesheet" href="style.css" />
@@ -21,31 +22,40 @@
             High Score: <span class="highScore">0</span>
           </div>
 
-          <div class="score">Score: <span class="counter">0</span></div>
+          <div class="score">Score:<span class="counter">0</span></div>
           <div class="nav-timer">
-            <div>Timer : <span class="timeCounter"></span></div>
-            <div class="timer-control">
-              <span class="play" title="now Playing">On</span>
-              <span class="pause" title="now Paused">OFF</span>
+            <div class="timer-box">Timer: </div>
+            <div class="timeCounter"></div>
+            <div class="timerBox">
+              <div class="timer-control">
+              <span class="play" title="Stop Timer">ON</span>
+              <span class="pause" title="Start Timer">OFF</span>
+            </div>
             </div>
           </div>
         </div>
         <div class="board">
           <div class="modal showModal showModalHome startingModal">
+
             <div class="notice">
-              <h3>Game Over</h3>
-              <h2>Final Score: <span class="finalScore"> 0</span></h2>
+              <h2>Game Over</h2>
+              <p class="reason"></p>
+              <h3>Final Score: <span class="finalScore"> 0</span></h3>
               <button id="reStart">Restart</button>
             </div>
+
+
             <div class="modalHome">
               <h3>Welcome back Chief</h3>
-              <p class="p">Press Arrow Keys for control Snake</p>
+              <p class="p">Press Start Buttom For Playing Game</p>
               <button id="start">Start</button>
             </div>
             <div class="startingTimer">
               <p class="count">3</p>
               <h5 class="p">Press Arrow Keys for control Snake</h5>
             </div>
+
+
           </div>
         </div>
       </section>
