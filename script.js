@@ -188,8 +188,6 @@ addEventListener("keydown", (event) => {
 });
 
 function playGame() {
-  
-
   snakeMoveing = setInterval(() => {
     render();
   }, speed);
@@ -252,6 +250,8 @@ pause.addEventListener("click", () => {
   pause.style.display = "none";
   play.style.display = "flex";
   play.style.backgroundColor = onPlay;
+  
+  
 
   timeCounter.innerText = timeLeft + "s";
 
@@ -259,6 +259,7 @@ pause.addEventListener("click", () => {
     showModal.style.display = "flex";
     notice.style.display = "flex";
 
+    reasonSelector.style.display = "none";
     clearInterval(snakeMoveing);
     clearInterval(countingTimeIntervel);
     isPlayingGame = false;
@@ -271,6 +272,8 @@ play.addEventListener("click", () => {
   play.style.display = "none";
   pause.style.display = "flex";
   pause.style.backgroundColor = onPause;
+  
+  
 
   clearInterval(countingTimeIntervel);
 
@@ -278,6 +281,7 @@ play.addEventListener("click", () => {
     showModal.style.display = "flex";
     notice.style.display = "flex";
 
+    reasonSelector.style.display = "none";
     clearInterval(snakeMoveing);
     clearInterval(countingTimeIntervel);
     isPlayingGame = false;
