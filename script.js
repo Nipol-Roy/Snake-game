@@ -26,12 +26,9 @@ const startBtn = document.querySelector("#start");
 const modalHome = document.querySelector(".modalHome");
 const showModalHome = document.querySelector(".showModalHome");
 
-const startingModal = document.querySelector(".startingModal")
-const startingTimer = document.querySelector(".startingTimer")
-
-
-
-
+const startingModal = document.querySelector(".startingModal");
+const startingTimer = document.querySelector(".startingTimer");
+let isPlayingGame = false;
 
 let food = {
   x: Math.floor(Math.random() * rows),
@@ -51,6 +48,61 @@ for (let row = 0; row < rows; row++) {
   }
 }
 // console.log(blocks);
+
+
+
+const pause = document.querySelector(".pause");
+const play = document.querySelector(".play");
+const navTimer = document.querySelector(".nav-timer");
+const timeCounter = document.querySelector(".timeCounter");
+
+let timeLeft = `02:00`;
+
+const OnPlayBg = "#68d391";
+const OnPauseBg = "#6b240f";
+
+let countingTimeIntervel = null;
+
+play.style.display = "none";
+
+timeCounter.innerText = "00:00s";
+
+
+function startTimeCounter() {
+  let [min, sec] = timeLeft.split(":").map(Number);
+
+  countingTimeIntervel = setInterval(() => {
+    if (sec == 0) {
+      if (min == 0) {
+        clearInterval(countingTimeIntervel);
+        countingTimeIntervel = null;
+        restartGame();
+
+        return;
+      } else {
+        min--;
+        sec = 59;
+      }
+    } else {
+      sec--;
+    }
+
+    let minFormat = min < 10 ? "0" + min : min;
+    let secFormat = sec < 10 ? "0" + sec : sec;
+
+    timeCounter.innerText = `${minFormat}:${secFormat}s`;
+
+    console.log(min, sec);
+  }, 1000);
+}
+
+
+
+
+
+
+
+
 
 function render() {
   snake.forEach((segment) => {
@@ -93,7 +145,6 @@ function render() {
   if (snake.some((snake) => snake.x === hade.x && snake.y === hade.y)) {
     showModal.style.display = "flex";
     notice.style.display = "flex";
-    
 
     clearInterval(snakeMoveing);
     return;
@@ -158,43 +209,44 @@ addEventListener("keydown", (event) => {
 function playGame() {
   snakeMoveing = setInterval(() => {
     render();
+    isPlayingGame = true;
   }, 300);
 }
 
 // playGame();
 
-function showTime(){
-  let StartingTimer 
-  let timeCount = 4
+let timeCount = 4;
 
-  let count = document.querySelector(".count")
+function showTime() {
+  let StartingTimer;
+  
 
-      StartingTimer = setInterval(() => {
-      startingModal.style.display = "flex"
-      startingTimer.style.display = "flex"
-      modalHome.style.display = "none";
-      console.log("hello")
-      timeCount--
-      
-      count.innerText = timeCount
-      if(timeCount < 0){
-        startingModal.style.display = "none"
-      startingTimer.style.display = "none"
-      clearInterval(StartingTimer)
-        playGame()
-      }
+  let count = document.querySelector(".count");
 
-    }, 1000);
+  StartingTimer = setInterval(() => {
+    startingModal.style.display = "flex";
+    startingTimer.style.display = "flex";
+    modalHome.style.display = "none";
+    console.log("hello");
+    timeCount--;
+
+    count.innerText = timeCount;
+    if (timeCount < 0) {
+      startingModal.style.display = "none";
+      startingTimer.style.display = "none";
+      clearInterval(StartingTimer);
+      playGame();
+    }
+  }, 1000);
 }
 
-
 function welcomeNotice() {
-  showModalHome.style.display = "flex";
+  showModalHome.style.display = "flex"; // off this game for some time
   modalHome.style.display = "flex";
 
   startBtn.addEventListener("click", () => {
     notice.style.display = "none";
-    showTime()
+    showTime();
   });
 }
 welcomeNotice();
@@ -202,7 +254,7 @@ welcomeNotice();
 function restartGame() {
   reStartBtn.addEventListener("click", () => {
     showModal.style.display = "none";
-    notice.style.display = "none"
+    notice.style.display = "none";
     direction = "";
     snake.forEach((segment) => {
       blocks[`${segment.x}-${segment.y}`].classList.remove("snake");
@@ -215,9 +267,33 @@ function restartGame() {
       });
     });
 
-    showTime()
-    direction = "right"
-
+    showTime();
+    direction = "right";
   });
 }
 restartGame();
+
+
+pause.addEventListener("click", () => {
+  pause.style.display = "none";
+  play.style.display = "flex";
+  navTimer.style.backgroundColor = OnPlayBg;
+  timeCounter.innerText = timeLeft + "s";
+
+  if (isPlayingGame) {
+    showModal.style.display = "flex";
+    notice.style.display = "flex";
+
+    clearInterval(snakeMoveing);
+
+    restartGame();
+    isPlayingGame = false;
+   if(timeCount < 0 ){
+    startTimeCounter()
+   }
+  }
+
+  console.log("hello world");
+});
+
+

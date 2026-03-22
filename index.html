@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snake Game</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="theem.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -16,26 +22,33 @@
           </div>
 
           <div class="score">Score: <span class="counter">0</span></div>
-          <div class="timer">Timer: <span class="">00-00</span></div>
+          <div class="nav-timer">
+            <div>Timer : <span class="timeCounter"></span></div>
+            <div class="timer-control">
+              <span class="play" title="now Playing">On</span>
+              <span class="pause" title="now Paused">OFF</span>
+            </div>
+          </div>
         </div>
-        <div class="board"></div>
+        <div class="board">
+          <div class="modal showModal showModalHome startingModal">
+            <div class="notice">
+              <h3>Game Over</h3>
+              <h2>Final Score: <span class="finalScore"> 0</span></h2>
+              <button id="reStart">Restart</button>
+            </div>
+            <div class="modalHome">
+              <h3>Welcome back Chief</h3>
+              <p class="p">Press Arrow Keys for control Snake</p>
+              <button id="start">Start</button>
+            </div>
+            <div class="startingTimer">
+              <p class="count">3</p>
+              <h5 class="p">Press Arrow Keys for control Snake</h5>
+            </div>
+          </div>
+        </div>
       </section>
-      <div class="modal showModal showModalHome startingModal">
-        <div class="notice">
-          <h3>Game Over</h3>
-          <h2>Final Score: <span class="finalScore"> 0</span></h2>
-          <button id="reStart">Restart</button>
-        </div>
-        <div class="modalHome">
-          <h3>Welcome back Chief</h3>
-          <p class="p">Press Arrow Keys for control Snake</p>
-          <button id="start">Start</button>
-        </div>
-        <div class="startingTimer">
-          <p class="count">3</p>
-          <h5 class="p">Press Arrow Keys for control Snake</h5>
-        </div>
-      </div>
     </main>
 
     <script src="script.js"></script>
